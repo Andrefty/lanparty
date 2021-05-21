@@ -1,22 +1,6 @@
 #include "list.h"
 #include "utils.h"
 
-/**
- * @brief Functie ce creaza un nod prin alocare dinamica 
- * si returneaza pointerul nodului creat. 
- * 
- * @param data - informatia nodului respectiv
- * @param next - adresa urmatorului nod
- * @return node* nou nod creat
- */
-node *makeNode(int data, char *nume_echipa, concurent *nume_jucatori, node *next)
-{
-    node *newnod = (node *)malloc(sizeof(node));
-    newnod->nume_echipa = strdup(nume_echipa);
-    newnod->nume_jucatori = nume_jucatori;
-    newnod->next = next;
-    return newnod;
-}
 
 /**
  * @brief Functie ce returneaza o lista nou creata cu ajutorul
@@ -69,9 +53,9 @@ node *makeList(FILE *file)
  *  
  * @param head - capul listei de afisat
  */
-void print(node *head)
+void print(node *head, char *fisier)
 {
-    FILE *g = fopen("/export/home/acs/stud/t/tudor.farcasanu/lan-party-02-checker/out/r.out", "w");
+    FILE *g = fopen(fisier, "w");
     node *n = head;
     while (n != NULL)
     {

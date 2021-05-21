@@ -12,7 +12,7 @@ build:
 	$(CXX) *.c -I$(LIBS_PATH) $(CXXFLAGS) -o $(BUILD_FOLDER_PATH)$(EXECUTABLE)
 
 run: build
-	$(BUILD_FOLDER_PATH)$(EXECUTABLE)
+	$(BUILD_FOLDER_PATH)$(EXECUTABLE) c.in d.in r.out
 
 clean:
 	rm -rf ./build/ &&\

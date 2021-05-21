@@ -21,21 +21,11 @@ typedef struct node
 
 
 /**
- * @brief Functie ce creaza un nod prin alocare dinamica 
- * si returneaza pointerul nodului creat. 
- * 
- * @param data - informatia nodului respectiv
- * @param next - adresa urmatorului nod
- * @return node* nou nod creat
- */
-node *makeNode(int data, char *nume_echipa, concurent *nume_jucatori, node *next);
-
-/**
  * @brief Functie ce afiseaza toate elementele unei liste
  *  
  * @param head - capul listei de afisat
  */
-void print(node *head);
+void print(node *head, char *fisier);
 
 /**
  * @brief Functie ce returneaza o lista nou creata cu ajutorul
