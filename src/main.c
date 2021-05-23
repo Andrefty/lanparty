@@ -14,7 +14,7 @@ int main(int argc, char **argv)
      }
      if (vcer[1] == 1 && vcer[0] == 1)
      {
-          int tmp = 0;
+          int tmp = 0, tmp1 = 0;
           node *tet = makeList(f);
           if (((tet->numar_echipe) & (tet->numar_echipe - 1)) == 0)
                print(tet, argv[3]);
@@ -28,8 +28,9 @@ int main(int argc, char **argv)
                          break;
                     }
                }
-               tet = removeLast(tet, ((tet->numar_echipe) - tmp));
-               tet->numar_echipe = (tet->numar_echipe) - tmp;
+               tmp1 =(tet->numar_echipe) - tmp;
+               tet = removeLast(tet, tmp1);
+               tet->numar_echipe = tmp1;
                print(tet, argv[3]);
           }
      }
