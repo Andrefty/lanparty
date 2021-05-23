@@ -88,7 +88,10 @@ node *removeLast(node *list, int numar_echipe_s)
             aux = aux->next;
         }
         if (del == list)
+        {
             list = list->next;
+            final = list;
+        }
         else
             del1->next = del->next;
         free(del->nume_echipa);
