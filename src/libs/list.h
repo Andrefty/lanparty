@@ -8,12 +8,14 @@ typedef struct concurent
 {
 	char *nume;
 	char *prenume;
-	int points;
+	int numar_puncte;
 } concurent;
 
 typedef struct node
-{
+{	
+	int numar_echipe;
 	int numar_jucatori;
+	double punctaj_echipa;
 	char *nume_echipa;
 	concurent *nume_jucatori;
 	struct node *next;
@@ -45,4 +47,4 @@ node *makeList(FILE *file);
  * @param list 
  * @return node* the head of the list
  */
-node *removeDuplicates(node *list);
+node *removeLast(node *list, int numar_echipe_s);

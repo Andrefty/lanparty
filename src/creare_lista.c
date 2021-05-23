@@ -1,7 +1,6 @@
 #include "list.h"
 #include "utils.h"
 
-
 /**
  * @brief Functie ce returneaza o lista nou creata cu ajutorul
  * datelor citite din fisier-ul file primit ca parametru
@@ -37,10 +36,13 @@ node *makeList(FILE *file)
             newnod->nume_jucatori[j].nume = strdup(numememsta);
             fscanf(file, "%s", prenumememsta);
             newnod->nume_jucatori[j].prenume = strdup(prenumememsta);
-            fscanf(file, "%d", &newnod->nume_jucatori[j].points);
+            fscanf(file, "%d", &newnod->nume_jucatori[j].numar_puncte);
+            newnod->punctaj_echipa += newnod->nume_jucatori[j].numar_puncte;
         }
+        newnod->punctaj_echipa = (newnod->punctaj_echipa) / (newnod->numar_jucatori);
         newnod->next = head;
         head = newnod;
+        head->numar_echipe = val;
         free(numeechsta);
         free(numememsta);
         free(prenumememsta);
@@ -59,9 +61,44 @@ void print(node *head, char *fisier)
     node *n = head;
     while (n != NULL)
     {
-        fprintf(g,"%s",n->nume_echipa);
+        fprintf(g, "%s", n->nume_echipa);
         n = n->next;
     }
 
     // Nice to have - pentru testare locala in main
+}
+node *removeLast(node *list, int numar_echipe_s)
+{
+    node *aux = list, *final = list, *del = NULL, *aux1 = NULL, *del1 = NULL;
+    double punctaj_min = INT_MAX - 10.0;
+    for (int i = 0; i < numar_echipe_s; i++)
+    {
+        aux = list;
+        aux1 = NULL;
+        punctaj_min = INT_MAX - 10.0;
+        while (aux != NULL)
+        {
+            if (aux->punctaj_echipa < punctaj_min)
+            {
+                punctaj_min = aux->punctaj_echipa;
+                del = aux;
+                del1 = aux1;
+            }
+            aux1 = aux;
+            aux = aux->next;
+        }
+        if (del == list)
+            list = list->next;
+        else
+            del1->next = del->next;
+        free(del->nume_echipa);
+        for (int j = 0; j < del->numar_jucatori; j++)
+        {
+            free(del->nume_jucatori[j].nume);
+            free(del->nume_jucatori[j].prenume);
+        }
+        free(del->nume_jucatori);
+        free(del);
+    }
+    return final;
 }
